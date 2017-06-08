@@ -1,10 +1,11 @@
 package character;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Weapon {
+public class Weapon implements Serializable{
 	//Type - if Type then stat change
     //private String[] weapon = {"Sword", "Lance", "Axe"};
     private String type;
@@ -22,6 +23,8 @@ public class Weapon {
     }
     
     
+    //-----------------------------------------------------------------------------
+    //Getter and Setter
     public void setType(String Type){
     	type = Type;
     }
@@ -57,6 +60,17 @@ public class Weapon {
     	return accMultiplier;
     }
     
+    //-----------------------------------------------------------------------------
+    
+    
+    
+    public String toString(){
+    	return new String("Type: " + getType() + System.lineSeparator() +
+    			"Name: " + getName() + System.lineSeparator() +
+    			"Rarity: " + getRarity() + System.lineSeparator() +
+    			"Damage Multiplier: " + getDmgMultiplier() + System.lineSeparator() +
+    			"Accuracy Multiplier: " + getAccMultiplier() + System.lineSeparator());
+    }
     
     /*public void setWeapon(){
     	weapon.add("Sword"); weapon.add("Lance"); weapon.add("Axe");
@@ -88,10 +102,10 @@ public class Weapon {
     
 
     //print out the String array here
-    public void printWeapons(){
+   /* public void printWeapons(){
         for (int i=0; i<weapon.size(); i++)
         {
             System.out.println(i + ". " + weapon.get(i));
         }
-    }
+    }*/
 }

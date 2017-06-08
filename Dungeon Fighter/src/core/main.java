@@ -1,9 +1,11 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import character.Player;
 import character.Weapon;
+import character.WeaponGenerator;
 
 public class main {
 
@@ -12,14 +14,27 @@ public class main {
 		//Scanner nameIn = new Scanner(System.in);
 		
 		Player pl = new Player("John");
-		weps.setWeapon();
+		ArrayList<Weapon> WeaponList = new ArrayList<Weapon>();
+		WeaponGenerator generate = new WeaponGenerator();
 		
-		pl.addInventory("Sword");
+		WeaponList.addAll(generate.createBaseWeapons()); 
+		
+		
+		for(int i=0;i<WeaponList.size();i++){
+			System.out.println(WeaponList.get(i).toString());
+			}
+		
+		pl.addToInventory(WeaponList.get(1));
+		pl.printInventory();
+		pl.addToInventory(WeaponList.get(2));
+		pl.printInventory();
+		
+		/*pl.addInventory(WeaponList.add(0));
 		pl.printInventory();
 		pl.addInventory(weps.getWeapon(2));
 		pl.printInventory();
 		pl.addInventory(weps.getWeapon(1));
-		pl.printInventory();
+		pl.printInventory();*/
 		/*int option;
 		System.out.println(
 				  "########################### \n"

@@ -16,7 +16,7 @@ public class Player {
 	Weapon weaponManagement = new Weapon();
 	
 	//private String equippedWeapon = weaponManagement.getWeapon(0);
-	private List<Weapon> inventory = new ArrayList<Weapon>();
+	private ArrayList<Weapon> inventory = new ArrayList<Weapon>();
 	
 	//Constructor
 	public Player ( String Name){
@@ -54,9 +54,8 @@ public class Player {
 		return new String("Name: " + getName() + "\n" + "Health: " + getHealth() + "/" + getMaxHealth() + "\n \n");
 	}
 	
-	public void addInventory(String Weapon){	
-    	//inventory.add(weaponManagement.getWeapon(weaponManagement.getWeaponID(Weapon)));
-		inventory.add(weaponManagement.getWeapon(weaponManagement.getWeaponID(Weapon)));
+	public void addToInventory(Weapon Weapon){	
+    	inventory.add(Weapon);
     }
 	
 	public void printInventory(){
@@ -64,16 +63,16 @@ public class Player {
 		inv = "Weapons in Inventory:";
 		for(int i = 0; i < inventory.size(); i++) {  
 			if(inventory.size() == 1){
-				inv = inv + "[" + inventory.get(i) + "]"; break;
+				inv = inv + "[" + inventory.get(i).getName() + "]"; break; //make it tostring or so later
 			}
 			if(i==0){
-				inv = inv+ "[" + inventory.get(i) + ", ";
+				inv = inv+ "[" + inventory.get(i).getName() + ", ";
 			}
 			else if(i==inventory.size()-1 ){
-				inv = inv + inventory.get(i) + "]";
+				inv = inv + inventory.get(i).getName() + "]";
 			}
 			else{
-				inv = inv + inventory.get(i) + ", ";
+				inv = inv + inventory.get(i).getName() + ", ";
 			}
 		}  
 		System.out.println(inv);

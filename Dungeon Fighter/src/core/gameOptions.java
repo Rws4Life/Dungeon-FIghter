@@ -2,7 +2,7 @@ package core;
 
 import java.util.Scanner;
 
-public class gameOptions {
+public class GameOptions {
 	private String name;
 	private int money;
 	private int health;
