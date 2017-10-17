@@ -7,16 +7,18 @@ import java.util.List;
 
 public class Player {
 	private String name;
-	private int maxHealth = 100;
-	private int health = 100;
-	private int damage = 0;
-	private int accuracy = 0;
+	private double maxHealth = 100;
+	private double health = 100;
+	private double baseDamage = 10; //Basic Damage player can do from Weapon Base damage * Difficulty Multiplier
+	private double baseAccuracy = 0;
 	
 	
 	Weapon weaponManagement = new Weapon();
 	
-	//private String equippedWeapon = weaponManagement.getWeapon(0);
+	
 	private ArrayList<Weapon> inventory = new ArrayList<Weapon>();
+	private Weapon equippedWeapon;
+	
 	
 	//Constructor
 	public Player ( String Name){
@@ -24,39 +26,63 @@ public class Player {
 	}
 	
 	
-	
+	//Get and Set Methods for Player
 	public String getName(){
 		return name;
 	}
 	public void setName(String inputName){
 		name = inputName;
 	}
-	public int getMaxHealth(){
+	public double getMaxHealth(){
 		return maxHealth;
 	}
 	public void setMaxHealth(int inputMaxHealth){
 		maxHealth = inputMaxHealth;
 	}
-	public int getHealth(){
+	public double getHealth(){
 		return health;
 	}
 	public void setHealth(int inputHealth){
 		health = inputHealth;
 	}
-	public int getDamageDealt(){
-		return damage;
+	public double getDamageDealt(){
+		return baseDamage;
 	}
-	public void setDamageDealt(int inputDamageDealt){
-		damage = inputDamageDealt;
+	public void setDamageDealt(double inputDamageDealt){
+		baseDamage = inputDamageDealt;
 	}
+	
+	
+	//Manage Inventory and Equipping Weapons
+	public void addToInventory(Weapon Weapon){	
+    	inventory.add(Weapon);
+    }
+	
+	public void deleteFromInventory(Weapon Weapon){
+		inventory.remove(Weapon);
+	}
+	
+	/*public void clearInventory(){
+		inventory.removeAll();
+	}*/
+	
+	public void setEquipWeapon(int chosenWeapon){
+		equippedWeapon = inventory.get(chosenWeapon-1);
+	}
+	
+	public Weapon getEquipWeapon(){
+		return equippedWeapon;
+	}
+	
+	//Printing Functions
 	
 	public String toString(){
 		return new String("Name: " + getName() + "\n" + "Health: " + getHealth() + "/" + getMaxHealth() + "\n \n");
 	}
 	
-	public void addToInventory(Weapon Weapon){	
-    	inventory.add(Weapon);
-    }
+	public void printEquippedWeapon(){
+		System.out.println("Equipped Weapon: " + equippedWeapon.getName());
+	}
 	
 	public void printInventory(){
 		String inv = "";
