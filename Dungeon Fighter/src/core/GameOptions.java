@@ -83,7 +83,7 @@ public class GameOptions {
 		pl.addToInventory(WeaponList.get(weapToAdd-1));
 		System.out.println(pl.toString());
 		pl.printInventory();
-		WeaponList.remove(weapToAdd);
+		WeaponList.remove(weapToAdd-1);
 		
 		System.out.println("Equipping Weapon...");
 		
@@ -117,17 +117,24 @@ public class GameOptions {
 	public void saveGame(){
 		
 		serialDAO dao = new serialDAO();
-		dao.saveList(gp.getWeaponList());
+		dao.saveList(gp.getWeaponList(), gp.getPlayer(), gp.getDifficulty());
 	}
 	
 	public void loadGame(){
 		
 		serialDAO dao = new serialDAO();
-		ArrayList<Weapon> listweap = dao.loadList();
+		dao.loadList(gp);
+		//ArrayList<Weapon> listweap = dao.loadList();
+		System.out.println(gp.getPlayer().toString());
+		gp.getPlayer().printInventory();
+		System.out.println(gp.getAccEnemyMultiplier());
+		
+		for(int i=0; i<gp.getWeaponList().size();i++){
+			System.out.println(gp.getWeaponFromList(i).getName());
+		}
 		
 		
-		
-		System.out.println(listweap.get(0).toString());
+		//System.out.println(listweap.get(0).toString());
 		
 		
 	}

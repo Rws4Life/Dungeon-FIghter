@@ -9,11 +9,13 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import character.Player;
 import character.Weapon;
+import core.GamePlay;
 
 public class serialDAO {
 
-	public <T> boolean saveList(ArrayList<Weapon> weaponList/*, ArrayList<Monster> monsterList*/) { //get gameplay as parameter
+	public <T> boolean saveList(ArrayList<Weapon> weaponList/*, ArrayList<Monster> monsterList*/, Player player, String difficulty) { //get gameplay as parameter
 		if("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.txt" != null) 
 			System.out.println("Save file: " + "C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.txt");
 		
@@ -23,6 +25,8 @@ public class serialDAO {
 			//gp.getMonsterList().writeObject()
 			oos.writeObject(weaponList);
 			//oos.writeObject(monsterList);
+			oos.writeObject(player);
+			oos.writeUTF(difficulty);
 
 			oos.close();
 			fos.close();
@@ -36,8 +40,7 @@ public class serialDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<Weapon> loadList() {//Make class Gamedata which contains lists or make void and set inside lists
-		ArrayList<Weapon> weapons = null;
+	public void loadList(GamePlay gp) {//Make class Gamedata which contains lists or make void and set inside lists
 		//ArrayList<Monsters> monsters = null;
 		File f = new File("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.txt");
 		
@@ -49,9 +52,12 @@ public class serialDAO {
 			try {
 				FileInputStream fis = new FileInputStream(f.getAbsolutePath());
 				ObjectInputStream ois = new ObjectInputStream(fis);
-				weapons = ((ArrayList<Weapon>) ois.readObject());
+				
 				//monsters = ((ArrayList<Monsters>) ois.readObject());
 				//gp.setMonsterList(monsters)
+				gp.loadListToWeaponList(((ArrayList<Weapon>) ois.readObject()));
+				gp.loadPlayer((Player) ois.readObject());
+				gp.loadDifficulty((String) ois.readUTF());
 
 				ois.close();
 				fis.close();
@@ -60,7 +66,6 @@ public class serialDAO {
 			}
 		}
 
-		return weapons;
 	}
 	
 }

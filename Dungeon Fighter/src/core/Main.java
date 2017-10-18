@@ -31,10 +31,11 @@ public class Main {
 			
 			newG.saveGame();
 			
-			newG.loadGame();
 		}
 		if(option == 2){
-			System.out.println("Not implemented yet");
+			//System.out.println("Not implemented yet");
+			GameOptions loadG = new GameOptions();
+			loadG.loadGame();
 		}
 
 		input.close();

@@ -16,7 +16,7 @@ public class GamePlay {
 	private Player pl;
 	private int money;
 	private String location;
-	private int health;
+	private String difficulty;
 	
 	//Master list of all existing weapons, excluding inventory of player
 	private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
@@ -34,8 +34,9 @@ public class GamePlay {
 	
 	WeaponGenerator generate = new WeaponGenerator();
 	
-	public void setVariableInstance(Player Player, String difficulty){
+	public void setVariableInstance(Player Player, String Difficulty){
 		pl = Player;
+		difficulty = Difficulty;
 		location = "Village";
 		switch(difficulty){
 		case "easy": money = 1000; 
@@ -126,6 +127,9 @@ public class GamePlay {
 	public double getAccEnemyMultiplier(){
 		return accEnemyMultiplier;
 	}
+	public String getDifficulty(){
+		return difficulty;
+	}
 	
 	public String getLocation(){
 		return location;
@@ -138,6 +142,7 @@ public class GamePlay {
 	public void addToWeaponList(Weapon weaponToAdd){
 		weaponList.add(weaponToAdd);
 	}
+
 	
 	public void removeFromWeaponList(int index){
 		weaponList.remove(index);
@@ -145,6 +150,21 @@ public class GamePlay {
 	
 	public Weapon getWeaponFromList(int index){
 		return weaponList.get(index);
+	}
+	
+	//load functions
+	public void loadListToWeaponList(ArrayList<Weapon> weaponList){
+		this.weaponList = weaponList;
+	}
+	public void loadPlayer(Player player){
+		pl = player;
+	}
+	public void loadDifficulty(String diff){
+		setVariableInstance(pl, diff);
+	}
+	
+	public Player getPlayer(){
+		return pl;
 	}
 	
 }

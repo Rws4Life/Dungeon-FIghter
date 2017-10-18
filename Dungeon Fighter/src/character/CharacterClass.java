@@ -21,4 +21,5 @@ public class CharacterClass {
 		Player character = new Player(getClass(1), Name, 90, 1, 1, 1);
 		return character;
 	}
+	
 }
