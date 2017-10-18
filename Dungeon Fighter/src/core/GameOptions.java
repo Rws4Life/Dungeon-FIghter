@@ -7,8 +7,11 @@ import character.CharacterClass;
 import character.Player;
 import character.Weapon;
 import character.WeaponGenerator;
+import dao.serialDAO;
 
 public class GameOptions {
+	
+	GamePlay gp = new GamePlay();
 
 	/**
 	 * This function creates a new game.
@@ -31,14 +34,12 @@ public class GameOptions {
 			Scanner difficultyIn = new Scanner(System.in);
 			difficulty = difficultyIn.nextLine();
 			
-			
-			
 			if(difficulty.equalsIgnoreCase("easy") || difficulty.equalsIgnoreCase("normal") || difficulty.equalsIgnoreCase("hard")){
 				/*|| difficulty.equals(1) || difficulty.equals(2) || difficulty.equals(3)*/
 				System.out.println("Difficulty set.");
 				b=false;
 			}
-			else System.out.println("Fuck you, set up a real difficulty or get out of here!");
+			else System.out.println("Set up a real difficulty or get out of here!");
 		}
 		
 		
@@ -84,7 +85,6 @@ public class GameOptions {
 		pl.printInventory();
 		WeaponList.remove(weapToAdd);
 		
-		
 		System.out.println("Equipping Weapon...");
 		
 		pl.setEquipWeapon(1);
@@ -93,7 +93,7 @@ public class GameOptions {
 		//Funny loading screen and setting up Gameplay
 		System.out.println("Fetching cadavers... \n Killing children... \n Blowing candles... \n");
 		
-		GamePlay gp = new GamePlay();
+		
 		gp.setVariableInstance(pl, difficulty);
 		
 		//add untaken weapons into weapon list in gameplay
@@ -114,6 +114,22 @@ public class GameOptions {
 		weaponInv.close();
 	}
 	
+	public void saveGame(){
+		
+		serialDAO dao = new serialDAO();
+		dao.saveList(gp.getWeaponList());
+	}
 	
+	public void loadGame(){
+		
+		serialDAO dao = new serialDAO();
+		ArrayList<Weapon> listweap = dao.loadList();
+		
+		
+		
+		System.out.println(listweap.get(0).toString());
+		
+		
+	}
 	
 }

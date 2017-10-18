@@ -44,14 +44,7 @@ public class WeaponGenerator {
 		}
 		return list;
 	}
-	
-	/*public void createWeapon(String Type, String Name, String Rarity, double DmgMultiplier, double AccMultiplier){
-		weaponManagement.setType(Type);
-		weaponManagement.setName(Name);
-		weaponManagement.setRarity(Rarity);
-		weaponManagement.setDmgMultiplier(DmgMultiplier);
-		weaponManagement.setAccMultiplier(AccMultiplier);
-	}*/
+
 	
 	public Weapon generateWeapon(){ //make gen weapon with rarity inputs? //Implement try catches instead of initialising variables, such as weapDmgMult or weapRarity
 		//random choose type
@@ -61,7 +54,13 @@ public class WeaponGenerator {
 		//if type then -> damage and accuracy
 		double weaponDmgMultiplier= randomDamage(weaponType);
 		double weaponAccMultiplier= randomAccuracy(weaponType);
-		
+		//set speed
+		double speed = 0;
+		switch(weaponType){
+			case "Sword": speed = 0.5; break;
+			case "Lance": speed = 0.25; break;
+			case "Axe": speed = 0.1; break;
+		}
 		//random rarity
 		String weaponRarity="Common";
 		int rarityNumber = randomInt(0,100);
@@ -86,8 +85,10 @@ public class WeaponGenerator {
 			case "Legendary": weaponDmgMultiplier = weaponDmgMultiplier + 2; weaponAccMultiplier = weaponAccMultiplier + 2;break;
 		}
 		
+		//TODO: Random chance of creating extreme weapon and add "of ..." -> chance 1% to add 2 spd to sword -> "Sword of Speed" // +2 dmg "Sword of Damage"
+		
 		//create Weapon
-		Weapon weapon= new Weapon(weaponType, weaponName, weaponRarity, weaponDmgMultiplier, weaponAccMultiplier, 0);
+		Weapon weapon= new Weapon(weaponType, weaponName, weaponRarity, weaponDmgMultiplier, weaponAccMultiplier, speed);
 		return weapon;
 	}
 	

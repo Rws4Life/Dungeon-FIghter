@@ -9,56 +9,20 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class serialDAO implements DAO{
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> ArrayList<T> getAllElements(Class<?> t) {
-		ArrayList<T> elements = null;
-		File f = new File("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.xml");
-		
-		/*
-		 * Hint: Calling '.exists' on a file also returns true if
-		 *  the file is a path! I may have saved you some coffee ;)
-		 */
-		if(f != null && f.isFile()){
-			try {
-				FileInputStream fis = new FileInputStream(f.getAbsolutePath());
-				ObjectInputStream ois = new ObjectInputStream(fis);
-				elements = ((ArrayList<T>) ois.readObject());
+import character.Weapon;
 
-				ois.close();
-				fis.close();
-			}catch(IOException e){} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-		}
+public class serialDAO {
 
-		return elements;
-	}
-
-	@Override
-	public <T> boolean removeElement(T t) {
-		@SuppressWarnings("unchecked")
-		Class<T> cl = (Class<T>) t.getClass();
-		ArrayList<T> elementsToSave = this.<T>getAllElements(cl);
-		for(T type : elementsToSave)
-			if(type.equals(t)){
-				elementsToSave.remove(t);
-				return this.saveList(cl , elementsToSave);
-			}
-
-		return false;
-	}
-
-	@Override
-	public <T> boolean saveList(Class<?> c, List<T> t) {
-		if("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.xml" != null) 
-			System.out.println("Save file: " + "C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.xml");
+	public <T> boolean saveList(ArrayList<Weapon> weaponList/*, ArrayList<Monster> monsterList*/) { //get gameplay as parameter
+		if("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.txt" != null) 
+			System.out.println("Save file: " + "C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.txt");
 		
 		try {
-			FileOutputStream fos = new FileOutputStream("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.xml");
+			FileOutputStream fos = new FileOutputStream("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.txt");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(t);
+			//gp.getMonsterList().writeObject()
+			oos.writeObject(weaponList);
+			//oos.writeObject(monsterList);
 
 			oos.close();
 			fos.close();
@@ -71,25 +35,32 @@ public class serialDAO implements DAO{
 		return true;
 	}
 
-	/**
-	 * Little helper method to wire a provided class to its save file.
-	 * 
-	 * @param t	Parameter which is used to determine the right save file.
-	 * @return	The file found at the path.
-	 */
-	//private <T> File getFileByType(Class<T> t){
-
-		//return new File(PathHelper.getRootPathAndAppendFileEnding(t.getSimpleName()));
+	@SuppressWarnings("unchecked")
+	public ArrayList<Weapon> loadList() {//Make class Gamedata which contains lists or make void and set inside lists
+		ArrayList<Weapon> weapons = null;
+		//ArrayList<Monsters> monsters = null;
+		File f = new File("C:\\Users\\Rws\\Desktop\\Dungeon Fighter\\Save.txt");
 		
 		/*
-		if(t.equals(Auction.class)){
-			return new File(PathHelper.getPathAuctionsFile()).getAbsoluteFile();
+		 * Hint: Calling '.exists' on a file also returns true if
+		 *  the file is a path! I may have saved you some coffee ;)
+		 */
+		if(f != null && f.isFile()){
+			try {
+				FileInputStream fis = new FileInputStream(f.getAbsolutePath());
+				ObjectInputStream ois = new ObjectInputStream(fis);
+				weapons = ((ArrayList<Weapon>) ois.readObject());
+				//monsters = ((ArrayList<Monsters>) ois.readObject());
+				//gp.setMonsterList(monsters)
+
+				ois.close();
+				fis.close();
+			}catch(IOException e){} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 
-		if(t.equals(User.class)){
-			return new File(PathHelper.getPathUsersFile());
-		}
-
-		return null;*/
-	//}
+		return weapons;
+	}
+	
 }

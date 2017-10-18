@@ -21,6 +21,10 @@ public class GamePlay {
 	//Master list of all existing weapons, excluding inventory of player
 	private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
 	
+	public ArrayList<Weapon> getWeaponList(){
+		return weaponList;
+	}
+	
 	//For difficulties
 	private double dmgPlayerMultiplier;
 	private double dmgEnemyMultiplier;
@@ -82,7 +86,7 @@ public class GamePlay {
 	public String optionsVillage(){
 		System.out.println("You are currently in your village! What do you wanna do? \n"
 				+ "1. Go to dungeon \n"
-				+ "2. Go fuck yourself \n");
+				+ "2. Placeholder Text \n");
 		Scanner optionIn = new Scanner(System.in);
 		String option = optionIn.nextLine();
 		optionIn.close();

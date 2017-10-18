@@ -75,7 +75,8 @@ public class Weapon implements Serializable{
     			"Name: " + getName() + System.lineSeparator() +
     			"Rarity: " + getRarity() + System.lineSeparator() +
     			"Damage Multiplier: " + getDmgMultiplier() + System.lineSeparator() +
-    			"Accuracy Multiplier: " + getAccMultiplier() + System.lineSeparator());
+    			"Accuracy Multiplier: " + getAccMultiplier() + System.lineSeparator() +
+    			"Speed: " + getSpeed() + System.lineSeparator());
     }
     
     /*public void setWeapon(){

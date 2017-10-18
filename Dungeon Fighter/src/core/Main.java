@@ -28,6 +28,10 @@ public class Main {
 		if(option == 1){
 			GameOptions newG = new GameOptions();
 			newG.newGame();
+			
+			newG.saveGame();
+			
+			newG.loadGame();
 		}
 		if(option == 2){
 			System.out.println("Not implemented yet");
