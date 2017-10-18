@@ -1,8 +1,10 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import character.Player;
+import character.Weapon;
 import character.WeaponGenerator;
 
 public class GamePlay {
@@ -15,6 +17,9 @@ public class GamePlay {
 	private int money;
 	private String location;
 	private int health;
+	
+	//Master list of all existing weapons, excluding inventory of player
+	private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
 	
 	//For difficulties
 	private double dmgPlayerMultiplier;
@@ -124,4 +129,18 @@ public class GamePlay {
 	public void setLocation(String Location){
 		location=Location;
 	}
+	
+	//add to weapon list // remove from weapon list // get from weapon list
+	public void addToWeaponList(Weapon weaponToAdd){
+		weaponList.add(weaponToAdd);
+	}
+	
+	public void removeFromWeaponList(int index){
+		weaponList.remove(index);
+	}
+	
+	public Weapon getWeaponFromList(int index){
+		return weaponList.get(index);
+	}
+	
 }

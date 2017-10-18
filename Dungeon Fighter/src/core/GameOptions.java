@@ -82,6 +82,7 @@ public class GameOptions {
 		pl.addToInventory(WeaponList.get(weapToAdd-1));
 		System.out.println(pl.toString());
 		pl.printInventory();
+		WeaponList.remove(weapToAdd);
 		
 		
 		System.out.println("Equipping Weapon...");
@@ -94,6 +95,11 @@ public class GameOptions {
 		
 		GamePlay gp = new GamePlay();
 		gp.setVariableInstance(pl, difficulty);
+		
+		//add untaken weapons into weapon list in gameplay
+		for(int i=0; i<WeaponList.size();i++){
+			gp.addToWeaponList(WeaponList.get(i));
+		}
 		
 		//Enter village and start game -> Going onto GamePlay
 		System.out.println("Enjoy!");

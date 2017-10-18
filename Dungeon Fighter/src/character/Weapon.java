@@ -1,25 +1,25 @@
 package character;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Weapon implements Serializable{
-	//Type - if Type then stat change
-    //private String[] weapon = {"Sword", "Lance", "Axe"};
+	/**
+	 * http://frequal.com/java/PracticalSerialVersionIdGuidelines.html
+	 */
+	private static final long serialVersionUID = 2191198455047530167L;
+	
     private String type;
     private String name;
-   private String rarity;
-    //rarity.add("Common");// "Rare", "Very Rare", "Legendary";
+    private String rarity;
     private double dmgMultiplier;
     private double accMultiplier;
+    private double speed;
     
     public Weapon(){
     	
     }
-    public Weapon(String Type, String Name, String Rarity, double DmgMultiplier, double AccMultiplier){
-    	type = Type; name = Name; rarity = Rarity; dmgMultiplier = DmgMultiplier; accMultiplier = AccMultiplier;
+    public Weapon(String Type, String Name, String Rarity, double DmgMultiplier, double AccMultiplier, double Speed){
+    	setType(Type); setName(Name); setRarity(Rarity); setDmgMultiplier(DmgMultiplier); setAccMultiplier(AccMultiplier); setSpeed(Speed);
     }
     
     
@@ -58,6 +58,12 @@ public class Weapon implements Serializable{
     }
     public double getAccMultiplier(){
     	return accMultiplier;
+    }
+    public void setSpeed(double Speed){
+    	speed = Speed;
+    }
+    public double getSpeed(){
+    	return speed;
     }
     
     //-----------------------------------------------------------------------------
