@@ -19,7 +19,7 @@ public class Main {
 				+ "2. Load Game \n \n \n");
 		Scanner input = new Scanner(System.in);
 		option = input.nextInt();
-		input.close();
+		//input.close();
 		
 		if(option == 1){
 			GameOptions newG = new GameOptions();
@@ -29,7 +29,7 @@ public class Main {
 			System.out.println("Not implemented yet");
 		}
 
-		
+		input.close();
 	}
 
 }

@@ -1,32 +1,38 @@
 package character;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 public class Player {
+	private String characterClass;
 	private String name;
 	private double maxHealth = 100;
 	private double health = 100;
-	private double baseDamage = 10; //Basic Damage player can do from Weapon Base damage * Difficulty Multiplier
+	private double baseDamage = 0; //Basic Damage player can do from Weapon Base damage * Difficulty Multiplier ->set by CharacterClass
 	private double baseAccuracy = 0;
+	private double baseSpeed = 0;
 	
 	
 	Weapon weaponManagement = new Weapon();
-	
 	
 	private ArrayList<Weapon> inventory = new ArrayList<Weapon>();
 	private Weapon equippedWeapon;
 	
 	
 	//Constructor
-	public Player ( String Name){
-		name = Name;
+	public Player (){
+	}
+	public Player (String Class, String Name, int MaxHealth, double Damage, double Accuracy, double Speed){
+		characterClass = Class; name = Name; maxHealth = MaxHealth; health = MaxHealth; baseDamage = Damage; baseAccuracy = Accuracy; baseSpeed = Speed;
 	}
 	
 	
 	//Get and Set Methods for Player
+	public String getCharacterClass(){
+		return characterClass;
+	}
+	public void setCharacterClass(String CharacterClass){
+		characterClass = CharacterClass;
+	}
 	public String getName(){
 		return name;
 	}
@@ -45,11 +51,23 @@ public class Player {
 	public void setHealth(int inputHealth){
 		health = inputHealth;
 	}
-	public double getDamageDealt(){
+	public double getBaseDamage(){
 		return baseDamage;
 	}
-	public void setDamageDealt(double inputDamageDealt){
-		baseDamage = inputDamageDealt;
+	public void setBaseDamage(int inputDamage){
+		baseDamage = inputDamage;
+	}
+	public double getBaseAccuracy(){
+		return baseAccuracy;
+	}
+	public void setBaseAccuracy(double inputAccuracy){
+		baseAccuracy = inputAccuracy;
+	}
+	public double getSpeed(){
+		return baseSpeed;
+	}
+	public void setSpeed(double inputSpeed){
+		baseSpeed = inputSpeed;
 	}
 	
 	
@@ -65,20 +83,35 @@ public class Player {
 	/*public void clearInventory(){
 		inventory.removeAll();
 	}*/
-	
+	public Weapon getEquipWeapon(){
+		return equippedWeapon;
+	}
 	public void setEquipWeapon(int chosenWeapon){
 		equippedWeapon = inventory.get(chosenWeapon-1);
 	}
 	
-	public Weapon getEquipWeapon(){
-		return equippedWeapon;
-	}
+	
 	
 	//Printing Functions
 	
 	public String toString(){
 		return new String("Name: " + getName() + "\n" + "Health: " + getHealth() + "/" + getMaxHealth() + "\n \n");
 	}
+	
+	/*public void printPerson(){
+		if(getEquipWeapon() == null){
+			System.out.println("Name: " + getName() + System.lineSeparator() +
+					"Health: " + getHealth() + "/" + getMaxHealth() + System.lineSeparator() +
+					"Equipped Weapon: None " + System.lineSeparator());
+		}
+		else{
+		System.out.println("Name: " + getName() + System.lineSeparator() +
+				"Health: " + getHealth() + "/" + getMaxHealth() + System.lineSeparator() +
+				"Equipped Weapon: " + getEquipWeapon().getName() + System.lineSeparator());
+		printInventory();
+		}
+	}*/
+	
 	
 	public void printEquippedWeapon(){
 		System.out.println("Equipped Weapon: " + equippedWeapon.getName());
