@@ -10,7 +10,7 @@ import character.WeaponGenerator;
 import dao.serialDAO;
 
 public class GameOptions {
-	
+	//TODO: Add Line Separators instead of \n to all prints
 	GamePlay gp = new GamePlay();
 
 	/**
@@ -61,6 +61,9 @@ public class GameOptions {
 		if(chosenClass.equals("1") || chosenClass.equalsIgnoreCase("warrior")){
 			pl = create.getWarriorClass(name);
 		}
+		else if(chosenClass.equals("2") || chosenClass.equalsIgnoreCase("hunter")){
+			pl = create.getHunterClass(name);
+		}
 		
 		System.out.println(pl.toString());
 		
@@ -95,6 +98,8 @@ public class GameOptions {
 		
 		
 		gp.setVariableInstance(pl, difficulty);
+		gp.setDungeonsCleared(0);
+		gp.setBossDungeonsCleared(0);
 		
 		//add untaken weapons into weapon list in gameplay
 		for(int i=0; i<WeaponList.size();i++){

@@ -5,6 +5,7 @@ import java.util.List;
 
 public class CharacterClass {
 	private List<String> classes = Arrays.asList("Warrior", "Hunter"); //paladin, thief and so on?
+	//TODO: Add rest of the classes
 	
 	public String getClass(int i){
 		return classes.get(i);

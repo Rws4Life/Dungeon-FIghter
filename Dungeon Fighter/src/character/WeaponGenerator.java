@@ -27,13 +27,14 @@ public class WeaponGenerator {
 	public ArrayList<Weapon> createBaseWeapons(){
 		//create Sword, Lance, Axe - TODO: Add Dagger
 		ArrayList<Weapon> list = new ArrayList<Weapon>();
-		for(int i=0; i<3; i++){	
+		for(int i=0; i<=3; i++){	
 			String nameOfWeapon = "";
 			double speed = 0;
 			switch(i){
 				case 0:nameOfWeapon = "Sword"; speed = 0.5; break;
 				case 1:nameOfWeapon = "Lance"; speed = 0.25; break;
 				case 2:nameOfWeapon = "Axe"; speed = 0.1; break;
+				case 3:nameOfWeapon = "Dagger"; speed = 1; break;
 			}
 			double dmgMultiplier = randomDamage(getType(i));
 			double accMultiplier = randomAccuracy(getType(i));
@@ -60,6 +61,7 @@ public class WeaponGenerator {
 			case "Sword": speed = 0.5; break;
 			case "Lance": speed = 0.25; break;
 			case "Axe": speed = 0.1; break;
+			case "Dagger": speed = 1; break;
 		}
 		//random rarity
 		String weaponRarity="Common";

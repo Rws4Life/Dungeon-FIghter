@@ -18,12 +18,12 @@ public class GamePlay {
 	private String location;
 	private String difficulty;
 	
+	//dungeon statistics
+	private int dungeonsCleared; //-> if 10 dungeons cleared, add some new weapons to the shop?
+	private int bossDungeonsCleared;
+	
 	//Master list of all existing weapons, excluding inventory of player
 	private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
-	
-	public ArrayList<Weapon> getWeaponList(){
-		return weaponList;
-	}
 	
 	//For difficulties
 	private double dmgPlayerMultiplier;
@@ -39,23 +39,21 @@ public class GamePlay {
 		difficulty = Difficulty;
 		location = "Village";
 		switch(difficulty){
-		case "easy": money = 1000; 
-		dmgPlayerMultiplier = 1.5; dmgEnemyMultiplier = 0.5; 
-		accPlayerMultiplier = 1.5; accEnemyMultiplier = 1; 
-		enemyHealthMultiplier = 0.75; break;
+		case "easy": setMoney(1000); 
+		setDmgPlayerMultiplier(1.5); setDmgEnemyMultiplier(0.5); 
+		setAccPlayerMultiplier(1.5); setAccEnemyMultiplier(1); 
+		setEnemyHealthMultiplier(0.75); break;
 		
-		case "normal": money = 500; 
-		dmgPlayerMultiplier = 1; dmgEnemyMultiplier = 1;
-		accPlayerMultiplier = 1; accEnemyMultiplier = 1; 
-		enemyHealthMultiplier = 1; break;
+		case "normal": setMoney(500); 
+		setDmgPlayerMultiplier(1); setDmgEnemyMultiplier(1); 
+		setAccPlayerMultiplier(1); setAccEnemyMultiplier(1); 
+		setEnemyHealthMultiplier(1);; break;
 		
-		case "hard": money = 0; 
-		dmgPlayerMultiplier = 0.75; dmgEnemyMultiplier = 1.5;
-		accPlayerMultiplier = 0.75; accEnemyMultiplier = 1.5; 
-		enemyHealthMultiplier= 2; break;
+		case "hard": setMoney(0); 
+		setDmgPlayerMultiplier(0.75); setDmgEnemyMultiplier(1.5); 
+		setAccPlayerMultiplier(0.75); setAccEnemyMultiplier(1.5); 
+		setEnemyHealthMultiplier(2); break;
 		}
-		
-		System.out.println("Set difficulty: " + difficulty + "\n Set player: " + pl.getName());
 	}
 	
 	
@@ -65,7 +63,7 @@ public class GamePlay {
 		welcomePlayer();
 		String option = optionsVillage();
 		if(option=="1" || option=="dungeon"){
-			
+			//chooseDungeonType(); -> make a Dungeon Object with length and such
 		}
 		
 		
@@ -107,29 +105,49 @@ public class GamePlay {
 	
 	
 	
+	//-----------------------------------------------------------------------------------------------------------------------------------------
+	//Variable related functions---------------------------------------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------------------------------------------------------------
 	
 	//Getter and Setter Methods
-	public int getMoney(){
-		return money;
+	public Player getPlayer(){
+		return pl;
 	}
-	public void setMoney(int inputMoney){
-		money = inputMoney;
-	}
+	
 	public double getDmgPlayerMultiplier(){
 		return dmgPlayerMultiplier;
+	}
+	public void setDmgPlayerMultiplier(double multiplier){
+		dmgPlayerMultiplier = multiplier;
 	}
 	public double getDmgEnemyMultiplier(){
 		return dmgEnemyMultiplier;
 	}
+	public void setDmgEnemyMultiplier(double multiplier){
+		dmgEnemyMultiplier = multiplier;
+	}
 	public double getAccPlayerMultiplier(){
 		return accPlayerMultiplier;
+	}
+	public void setAccPlayerMultiplier(double multiplier){
+		accPlayerMultiplier = multiplier;
 	}
 	public double getAccEnemyMultiplier(){
 		return accEnemyMultiplier;
 	}
+	public void setAccEnemyMultiplier(double multiplier){
+		accEnemyMultiplier = multiplier;
+	}
+	public double getEnemyHealthMultiplier(){
+		return enemyHealthMultiplier;
+	}
+	public void setEnemyHealthMultiplier(double multiplier){
+		enemyHealthMultiplier = multiplier;
+	}
 	public String getDifficulty(){
 		return difficulty;
 	}
+	
 	
 	public String getLocation(){
 		return location;
@@ -138,7 +156,46 @@ public class GamePlay {
 		location=Location;
 	}
 	
+	//dungeon statistics
+	public int getDungeonsCleared(){
+		return dungeonsCleared;
+	}
+	public void setDungeonsCleared(int dungeonsClearSet){
+		dungeonsCleared=dungeonsClearSet;
+	}
+	public void addDungeonsCleared(){
+		dungeonsCleared = dungeonsCleared+1;
+	}
+	public int getBossDungeonsCleared(){
+		return bossDungeonsCleared;
+	}
+	public void setBossDungeonsCleared(int dungeonsClearSet){
+		bossDungeonsCleared=dungeonsClearSet;
+	}
+	public void addBossDungeonsCleared(){
+		bossDungeonsCleared = bossDungeonsCleared+1;
+	}
+	
+	
+	//money functions - add, subtract, money checks and so on -> Add potion that increases Money found (multiply by x1.5)
+	public int getMoney(){
+		return money;
+	}
+	public void setMoney(int inputMoney){
+		money = inputMoney;
+	}
+	public void addMoney(int inputMoney){
+		money = money + inputMoney;
+	}
+	public void subMoney(int inputMoney){
+		money = money - inputMoney;
+	}
+	
 	//add to weapon list // remove from weapon list // get from weapon list
+	public ArrayList<Weapon> getWeaponList(){
+		return weaponList;
+	}
+	
 	public void addToWeaponList(Weapon weaponToAdd){
 		weaponList.add(weaponToAdd);
 	}
@@ -163,8 +220,6 @@ public class GamePlay {
 		setVariableInstance(pl, diff);
 	}
 	
-	public Player getPlayer(){
-		return pl;
-	}
+	
 	
 }

@@ -8,4 +8,4 @@ public class NPC {
 }
 
 
-//Yasin der König implementieren
+//Yasin der Koenig implementieren

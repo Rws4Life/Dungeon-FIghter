@@ -8,14 +8,14 @@ public class Player implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String characterClass;
+	private String characterClass; 
 	private String name;
 	private double maxHealth = 100;
 	private double health = 100;
 	private double baseDamage = 0; //Basic Damage player can do from Weapon Base damage * Difficulty Multiplier ->set by CharacterClass
 	private double baseAccuracy = 0;
 	private double baseSpeed = 0;
-	
+	//TODO: Add try/catches so that we do not initialise variables anymore
 	
 	Weapon weaponManagement = new Weapon();
 	
