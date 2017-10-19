@@ -1,8 +1,5 @@
 package entities;
 
-import java.util.Arrays;
-import java.util.List;
-
 import character.Weapon;
 import character.WeaponGenerator;
 
