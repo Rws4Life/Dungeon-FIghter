@@ -13,7 +13,7 @@ public class CharacterClass {
 	
 	public Player getWarriorClass(String Name){
 		//create a player with following stats: Name, MaxHealth and CurrentHealth, BaseDamage, BaseAccuracy, BaseSpeed
-		Player character = new Player(getClass(0), Name, 130, 1, 1, 1);
+		Player character = new Player(getClass(0), Name, 130, 10, 1, 1);
 		return character;
 	}
 	

@@ -9,26 +9,38 @@ import character.WeaponGenerator;
 public class Monster {
 	
 	
-	private List<String> enemyType = Arrays.asList("Skeleton", "Zombie"); 
 	
+	private String enemyType;
 	private double maxHealth = 100;
 	private double health = 100;
 	private double baseDamage = 0;
 	private double baseAccuracy = 0;
 	private double baseSpeed = 0;
+	public int level = 0;
 	
 	private int goldDrop = 0;
 	
-	private Weapon weapon; // generate random weapon from weapongenerator
+	private Weapon weapon;
 	
-	public Monster(double type, double mHealth, double bDamage, double bAccuracy, double bSpeed, int goldValue){
-		setMaxHealth(mHealth); setHealth(mHealth); setDamage(bDamage); setAccuracy(bAccuracy); setSpeed(bSpeed); setGoldDrop(goldValue); generateWeapon();
+	public Monster(){
+		
+	}
+	
+	public Monster(String type, double mHealth, double bDamage, double bAccuracy, double bSpeed, int goldValue, int Level){
+		setEnemyType(type); setMaxHealth(mHealth); setHealth(mHealth); 
+		setDamage(bDamage); setAccuracy(bAccuracy); setSpeed(bSpeed); 
+		setGoldDrop(goldValue); setLevel(Level); generateWeapon();
 	}
 	
 	
 	
 	
-	
+	public String getEnemyType(){
+		return enemyType;
+	}
+	public void setEnemyType(String EnemyType){
+		enemyType = EnemyType;
+	}
 	public double getMaxHealth(){
 		return maxHealth;
 	}
@@ -38,7 +50,7 @@ public class Monster {
 	public double getHealth(){
 		return health;
 	}
-	public void setHealth(double Health){ //monster.getHealth()-getBaseDamage()*Dmg Multipliers
+	public void setHealth(double Health){ //monster.getHealth()-pl.getBaseDamage()*pl.Dmg Multipliers
 		health = Health;
 	}
 	public double getDamage(){
@@ -58,6 +70,12 @@ public class Monster {
 	}
 	public void setSpeed(double speed){
 		baseSpeed = speed;
+	}
+	public int getLevel(){
+		return level;
+	}
+	public void setLevel(int Level){
+		level = Level;
 	}
 	
 	public int getGoldDrop(){
