@@ -109,7 +109,7 @@ public class GameOptions {
 		//Enter village and start game -> Going onto GamePlay
 		System.out.println("Enjoy!");
 		
-		gp.startGame();
+		gp.startGame(gp);
 		
 		
 		//Note to self: Close Scanners sometime
@@ -122,7 +122,7 @@ public class GameOptions {
 	public void saveGame(){
 		
 		serialDAO dao = new serialDAO();
-		dao.saveList(gp.getWeaponList(), gp.getPlayer(), gp.getDifficulty());
+		dao.saveList(gp.getWeaponList(), gp.getPlayer(), gp.getDifficulty(), gp.getDungeonsCleared(), gp.getBossDungeonsCleared());
 	}
 	
 	public void loadGame(){
@@ -132,7 +132,7 @@ public class GameOptions {
 		//ArrayList<Weapon> listweap = dao.loadList();
 		System.out.println(gp.getPlayer().toString());
 		gp.getPlayer().printInventory();
-		System.out.println(gp.getAccEnemyMultiplier());
+		System.out.println(gp.getDifficulty());
 		
 		for(int i=0; i<gp.getWeaponList().size();i++){
 			System.out.println(gp.getWeaponFromList(i).getName());

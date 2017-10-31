@@ -6,6 +6,7 @@ import java.util.Scanner;
 import character.Player;
 import character.Weapon;
 import character.WeaponGenerator;
+import location.Dungeon;
 
 public class GamePlay {
 
@@ -19,8 +20,8 @@ public class GamePlay {
 	private String difficulty;
 	
 	//dungeon statistics
-	private int dungeonsCleared; //-> if 10 dungeons cleared, add some new weapons to the shop?
-	private int bossDungeonsCleared;
+	private int dungeonsCleared=0; //-> if 10 dungeons cleared, add some new weapons to the shop?
+	private int bossDungeonsCleared=0;
 	
 	//Master list of all existing weapons, excluding inventory of player
 	private ArrayList<Weapon> weaponList = new ArrayList<Weapon>();
@@ -59,11 +60,14 @@ public class GamePlay {
 	
 	
 	//Start in Village -> What do you want to do?
-	public void startGame(){
+	public void startGame(GamePlay thisGPInstance){
 		welcomePlayer();
 		String option = optionsVillage();
-		if(option=="1" || option=="dungeon"){
-			//chooseDungeonType(); -> make a Dungeon Object with length and such
+		if(option.equals("1") || option.equalsIgnoreCase("dungeon")){
+			//chooseDungeonType(); -> make a Dungeon Object with length and such //IS IN DUNGEON CLASS
+			Dungeon d = new Dungeon();
+			d.dungeonJourney(thisGPInstance);
+					
 		}
 		
 		
@@ -218,6 +222,12 @@ public class GamePlay {
 	}
 	public void loadDifficulty(String diff){
 		setVariableInstance(pl, diff);
+	}
+	public void loadDungeonsCleared(int dCleared){
+		setDungeonsCleared(dCleared);
+	}
+	public void loadBossDungeonsCleared(int bdCleared){
+		setBossDungeonsCleared(bdCleared);
 	}
 	
 	

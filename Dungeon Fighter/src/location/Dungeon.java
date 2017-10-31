@@ -19,13 +19,14 @@ public class Dungeon {
 	public void dungeonJourney(GamePlay gp){ // use the gamePlay session
 		//Ask for length of dungeon -> if %5 then boss dungeon
 		System.out.println("Hello! What type of dungeon do you want to choose?");
+		Scanner roomOptionIn = new Scanner(System.in);
 		if(gp.getDungeonsCleared() != 0 && gp.getDungeonsCleared()%5==0){
 			setBossDungeonState(true);
 			System.out.println("It seems like it is time for a boss dungeon, since you have cleared" + gp.getDungeonsCleared() + "dungeons!");
 			System.out.println("1. Easy Dungeon (Only a boss)");
 			System.out.println("2. Medium Dungeon (5 Fights and a boss)");
 			System.out.println("3. Hard Dungeon (10 Fights and a boss)");
-			Scanner roomOptionIn = new Scanner(System.in);
+			
 			int roomOption = roomOptionIn.nextInt();
 			
 			switch(roomOption){
@@ -38,12 +39,12 @@ public class Dungeon {
 		else{
 			System.out.println("1. Short Dungeon (10 Fights)");
 			System.out.println("2. Long Dungeon (25 Fights)");
-			Scanner roomOptionIn = new Scanner(System.in);
-			int roomOption = roomOptionIn.nextInt();
+			//Scanner roomOptionIn2 = new Scanner(System.in);
+			String roomOption = roomOptionIn.nextLine();
 			
 			switch(roomOption){
-			case 1: chooseDungeonType(10, false);
-			case 2: chooseDungeonType(25, false);
+			case "1": chooseDungeonType(10, false);
+			case "2": chooseDungeonType(25, false);
 			
 			}
 		}
@@ -57,12 +58,12 @@ public class Dungeon {
 			System.out.println("You are standing in a hallway. What do you want to do?");
 			System.out.println("1. Enter room.");
 			System.out.println("2. Prepare");
-			Scanner roomOptionIn = new Scanner(System.in);
-			int roomOption = roomOptionIn.nextInt();
+			Scanner roomOptionIn2 = new Scanner(System.in);
+			int roomOption = roomOptionIn2.nextInt();
 			
 			switch(roomOption){
-			case 1: break;
-			case 2: break;
+			case 1: System.out.println("That's all until now");break;
+			case 2: System.out.println("That's all until now");break;
 			}
 			
 			
